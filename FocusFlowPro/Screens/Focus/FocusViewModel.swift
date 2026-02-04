@@ -15,13 +15,13 @@ final class FocusViewModel: ObservableObject {
     @Published var remainingTime: TimeInterval
     @Published var isRunning = false
     @Published var didFinish = false   // 🔥 ВАЖНО
-
-    let totalTime: TimeInterval
+    @Published var totalTime: TimeInterval
     private var timer: AnyCancellable?
 
     init(minutes: Int = 25) {
-        self.totalTime = TimeInterval(minutes * 60)
-        self.remainingTime = self.totalTime
+        let initial = TimeInterval(minutes * 60)
+        self.totalTime = initial
+        self.remainingTime = initial
     }
 
     func start() {
@@ -44,6 +44,14 @@ final class FocusViewModel: ObservableObject {
     func reset() {
         pause()
         remainingTime = totalTime
+    }
+
+    func setDuration(minutes: Int) {
+        guard !isRunning else { return }
+        let newTotal = TimeInterval(minutes * 60)
+        totalTime = newTotal
+        remainingTime = newTotal
+        didFinish = false
     }
 
     private func tick() {

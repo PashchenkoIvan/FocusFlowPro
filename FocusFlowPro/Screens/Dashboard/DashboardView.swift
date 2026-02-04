@@ -26,9 +26,10 @@ struct DashboardView: View {
             VStack(spacing: 24) {
 
                 header
-                    .padding(.top, 8)
+                    .padding(.top, 24)
                 
                 quickActions
+                    .padding(.top, 4)
 
                 FocusSummaryCard(progress: progress)
 
@@ -67,7 +68,8 @@ struct DashboardView: View {
                     Text("Focus session")
                         .font(.caption)
                 }
-                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .foregroundColor(AppTheme.textPrimary)
             }
             .onTapGesture {
                 HapticService.impact(.light)
@@ -81,7 +83,8 @@ struct DashboardView: View {
                     Text("Energy check‑in")
                         .font(.caption)
                 }
-                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .foregroundColor(AppTheme.textPrimary)
             }
             .onTapGesture {
                 HapticService.impact(.light)

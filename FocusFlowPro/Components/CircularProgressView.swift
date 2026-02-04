@@ -15,7 +15,7 @@ struct CircularProgressView: View {
     var body: some View {
         ZStack {
             Circle()
-                .stroke(Color.white.opacity(0.1), lineWidth: 12)
+                .stroke(Color.secondary.opacity(0.25), lineWidth: 12)
 
             Circle()
                 .trim(from: 0, to: progress)
@@ -28,7 +28,7 @@ struct CircularProgressView: View {
 
             Text("\(Int(progress * 100))%")
                 .font(.title.bold())
-                .foregroundColor(.white)
+                .foregroundColor(AppTheme.textPrimary)
         }
         .frame(width: 140, height: 140)
     }

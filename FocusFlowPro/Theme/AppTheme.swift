@@ -10,7 +10,8 @@ import SwiftUI
 
 enum AppTheme {
 
-    static let background = Color(hex: "#0B0E14")
+    // Фон зависит от системной темы (светлая / тёмная)
+    static let background = Color(.systemBackground)
 
     static let accentGradient = LinearGradient(
         colors: [
@@ -25,9 +26,9 @@ enum AppTheme {
     static let cardBackground = Color.white.opacity(0.08)
     static let cardStroke = Color.white.opacity(0.12)
 
-    // Text
-    static let textPrimary = Color.white
-    static let textSecondary = Color.white.opacity(0.6)
+    // Text (динамичный цвет, подстраивается под тему системы)
+    static let textPrimary = Color.primary
+    static let textSecondary = Color.secondary
 
     // Controls
     static let tint = Color(hex: "#6A5CFF")

@@ -33,7 +33,7 @@ struct CustomTabBar: View {
             Image(systemName: icon)
                 .font(.system(size: 20, weight: .semibold))
                 .foregroundColor(
-                    appState.selectedTab == tab ? .cyan : .gray
+                    appState.selectedTab == tab ? AppTheme.tint : AppTheme.textSecondary
                 )
                 .frame(maxWidth: .infinity)
         }

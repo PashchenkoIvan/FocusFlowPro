@@ -36,9 +36,12 @@ struct CalendarHeatmapView: View {
         }
 
         switch sessions.count {
-        case 0: return Color.white.opacity(0.05)
-        case 1...2: return Color.cyan.opacity(0.4)
-        default: return Color.cyan
+        case 0:
+            return AppTheme.cardBackground
+        case 1...2:
+            return AppTheme.tint.opacity(0.5)
+        default:
+            return AppTheme.tint
         }
     }
 }

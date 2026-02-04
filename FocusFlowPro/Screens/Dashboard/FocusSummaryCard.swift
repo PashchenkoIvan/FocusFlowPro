@@ -25,6 +25,7 @@ struct FocusSummaryCard: View {
                     .font(.subheadline)
                     .foregroundColor(AppTheme.textSecondary)
             }
+            .frame(maxWidth: .infinity)
         }
         .animation(
             .spring(response: 0.4, dampingFraction: 0.8),

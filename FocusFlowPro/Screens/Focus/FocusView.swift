@@ -11,9 +11,11 @@ import SwiftUI
 struct FocusView: View {
     
     @EnvironmentObject var appState: AppState
-    @StateObject private var viewModel = FocusViewModel()
+    @ObservedObject var viewModel: FocusViewModel
     
     @State private var selectedEnergy: EnergyLevel = .medium
+    
+    private let durations = [15, 25, 50]
     
     var body: some View {
         ZStack {
@@ -33,8 +35,37 @@ struct FocusView: View {
                         .foregroundColor(AppTheme.textSecondary)
                 }
                 
+                // Duration selector
+                HStack(spacing: 8) {
+                    ForEach(durations, id: \.self) { minutes in
+                        Button {
+                            viewModel.setDuration(minutes: minutes)
+                        } label: {
+                            Text("\(minutes) min")
+                                .font(.caption.weight(.semibold))
+                                .foregroundColor(AppTheme.textPrimary.opacity(0.9))
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 8)
+                                .background(
+                                    selectedDuration == minutes
+                                    ? AppTheme.chipSelectedBackground
+                                    : AppTheme.chipBackground
+                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .stroke(AppTheme.cardStroke, lineWidth: selectedDuration == minutes ? 1.2 : 0.8)
+                                )
+                                .cornerRadius(14)
+                        }
+                        .buttonStyle(.plain)
+                        .disabled(viewModel.isRunning)
+                        .opacity(viewModel.isRunning ? 0.5 : 1.0)
+                    }
+                }
+                .padding(.top, 4)
+                
                 CircularTimerView(
-                    progress: viewModel.remainingTime / viewModel.totalTime,
+                    progress: viewModel.remainingTime / max(viewModel.totalTime, 1),
                     time: viewModel.remainingTime
                 )
                 .padding(.top, 8)
@@ -76,6 +107,10 @@ struct FocusView: View {
                 saveSession()
             }
         }
+    }
+    
+    private var selectedDuration: Int {
+        Int(viewModel.totalTime / 60)
     }
     
     private func toggle() {

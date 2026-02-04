@@ -23,7 +23,7 @@ struct TaskRowView: View {
                           ? "checkmark.circle.fill"
                           : "circle")
                         .font(.title2)
-                        .foregroundColor(task.status == .done ? .green : .gray)
+                        .foregroundColor(task.status == .done ? .green : AppTheme.textSecondary)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {

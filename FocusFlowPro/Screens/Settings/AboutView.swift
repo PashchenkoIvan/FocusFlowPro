@@ -10,18 +10,52 @@ import SwiftUI
 
 struct AboutView: View {
     var body: some View {
-        VStack(spacing: 16) {
-            Text("FocusFlow Pro")
-                .font(.largeTitle.bold())
-                .foregroundColor(.white)
+        ZStack {
+            AppTheme.background.ignoresSafeArea()
+            BlurredBackground()
+                .ignoresSafeArea()
 
-            Text("AI-assisted design & development\nBuilt with SwiftUI")
-                .multilineTextAlignment(.center)
-                .foregroundColor(.gray)
+            ScrollView {
+                VStack(spacing: 24) {
+                    VStack(spacing: 12) {
+                        Text("FocusFlow Pro")
+                            .font(.largeTitle.bold())
+                            .foregroundColor(AppTheme.textPrimary)
 
-            Spacer()
+                        Text("Minimal focus companion\nCrafted with SwiftUI")
+                            .multilineTextAlignment(.center)
+                            .font(.subheadline)
+                            .foregroundColor(AppTheme.textSecondary)
+                    }
+
+                    GlassCard {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Why this app")
+                                .font(.headline)
+                                .foregroundColor(AppTheme.textPrimary)
+                            Text("Lightweight focus sessions, quick task capture and simple energy check‑ins — without noisy dashboards.")
+                                .font(.subheadline)
+                                .foregroundColor(AppTheme.textSecondary)
+                        }
+                    }
+
+                    GlassCard {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Design")
+                                .font(.headline)
+                                .foregroundColor(AppTheme.textPrimary)
+                            Text("Optimized for both dark and light mode with a glassmorphism‑inspired look.")
+                                .font(.subheadline)
+                                .foregroundColor(AppTheme.textSecondary)
+                        }
+                    }
+
+                    Spacer(minLength: 16)
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 32)
+                .padding(.bottom, 24)
+            }
         }
-        .padding()
-        .background(AppTheme.background.ignoresSafeArea())
     }
 }

@@ -72,7 +72,7 @@ struct TasksView: View {
             } label: {
                 Image(systemName: "plus")
                     .font(.title2.weight(.bold))
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
                     .frame(width: 56, height: 56)
                     .background(AppTheme.accentGradient)
                     .clipShape(Circle())

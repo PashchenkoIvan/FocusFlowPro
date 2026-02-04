@@ -11,6 +11,7 @@ import SwiftUI
 struct MainTabView: View {
 
     @EnvironmentObject var appState: AppState
+    @StateObject private var focusViewModel = FocusViewModel()
 
     var body: some View {
         VStack(spacing: 0) {
@@ -21,7 +22,7 @@ struct MainTabView: View {
                 case .tasks:
                     TasksView()
                 case .focus:
-                    FocusView()
+                    FocusView(viewModel: focusViewModel)
                 case .analytics:
                     AnalyticsView()
                 case .settings:

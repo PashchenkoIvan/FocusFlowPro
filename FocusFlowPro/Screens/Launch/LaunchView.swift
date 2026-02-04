@@ -26,7 +26,7 @@ struct LaunchView: View {
 
                 Text("FocusFlow Pro")
                     .font(.largeTitle.bold())
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
             }
             .scaleEffect(scale)
             .opacity(opacity)

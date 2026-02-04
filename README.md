@@ -91,7 +91,7 @@
 1. **Клонировать репозиторий**
 
 ```bash
-git clone https://github.com/<your-username>/FocusFlowPro.git
+git clone https://github.com/PashchenkoIvan/FocusFlowPro.git
 cd FocusFlowPro
 ```
 

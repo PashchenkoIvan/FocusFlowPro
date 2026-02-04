@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct FocusFlowProApp: App {
+
+    @StateObject private var appState = AppState()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootContainerView()
+                .environmentObject(appState)
+                .preferredColorScheme(appState.isDarkMode ? .dark : .light)
         }
     }
 }

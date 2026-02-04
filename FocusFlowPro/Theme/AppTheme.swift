@@ -21,5 +21,19 @@ enum AppTheme {
         endPoint: .bottomTrailing
     )
 
+    // Glass / surfaces
     static let cardBackground = Color.white.opacity(0.08)
+    static let cardStroke = Color.white.opacity(0.12)
+
+    // Text
+    static let textPrimary = Color.white
+    static let textSecondary = Color.white.opacity(0.6)
+
+    // Controls
+    static let tint = Color(hex: "#6A5CFF")
+    static let chipBackground = Color.white.opacity(0.06)
+    static let chipSelectedBackground = Color.white.opacity(0.14)
+
+    // Shadows
+    static let shadow = Color.black.opacity(0.35)
 }

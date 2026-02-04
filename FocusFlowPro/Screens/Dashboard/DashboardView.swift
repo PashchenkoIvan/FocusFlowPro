@@ -22,10 +22,11 @@ struct DashboardView: View {
     }
 
     var body: some View {
-        ScrollView {
+        ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 24) {
 
                 header
+                    .padding(.top, 8)
                 
                 quickActions
 
@@ -36,7 +37,7 @@ struct DashboardView: View {
                     sessions: appState.focusSessions
                 ))
 
-                SectionHeaderView(title: "Today Tasks")
+                SectionHeaderView(title: "Today's Tasks")
 
                 VStack(spacing: 12) {
                     ForEach(appState.tasks.prefix(4)) { task in
@@ -44,9 +45,16 @@ struct DashboardView: View {
                     }
                 }
             }
-            .padding()
+            .padding(.horizontal, 20)
+            .padding(.bottom, 24)
         }
-        .background(AppTheme.background.ignoresSafeArea())
+        .background(
+            ZStack {
+                AppTheme.background.ignoresSafeArea()
+                BlurredBackground()
+                    .ignoresSafeArea()
+            }
+        )
     }
     
     private var quickActions: some View {
@@ -56,7 +64,7 @@ struct DashboardView: View {
                 VStack {
                     Image(systemName: "timer")
                         .font(.title)
-                    Text("Start Focus")
+                    Text("Focus session")
                         .font(.caption)
                 }
                 .foregroundColor(.white)
@@ -70,7 +78,7 @@ struct DashboardView: View {
                 VStack {
                     Image(systemName: "bolt.fill")
                         .font(.title)
-                    Text("Energy")
+                    Text("Energy check‑in")
                         .font(.caption)
                 }
                 .foregroundColor(.white)
@@ -84,16 +92,18 @@ struct DashboardView: View {
 
     private var header: some View {
         HStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text("Today")
                     .font(.largeTitle.bold())
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
 
                 Text(Date(), style: .date)
-                    .foregroundColor(.gray)
+                    .font(.subheadline)
+                    .foregroundColor(AppTheme.textSecondary)
             }
 
             Spacer()
         }
     }
 }
+

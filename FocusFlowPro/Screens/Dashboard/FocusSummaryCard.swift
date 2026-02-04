@@ -14,15 +14,16 @@ struct FocusSummaryCard: View {
 
     var body: some View {
         GlassCard {
-            VStack(spacing: 16) {
+            VStack(spacing: 12) {
                 Text("Today Focus")
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
 
                 CircularProgressView(progress: progress)
 
                 Text("\(Int(progress * 100))% completed")
-                    .foregroundColor(.gray)
+                    .font(.subheadline)
+                    .foregroundColor(AppTheme.textSecondary)
             }
         }
         .animation(

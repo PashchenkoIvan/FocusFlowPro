@@ -24,9 +24,17 @@ struct AnalyticsView: View {
         ScrollView {
             VStack(spacing: 24) {
                 
-                Text("Analytics")
-                    .font(.largeTitle.bold())
-                    .foregroundColor(.white)
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Analytics")
+                        .font(.largeTitle.bold())
+                        .foregroundColor(AppTheme.textPrimary)
+                    
+                    Text("See how your focus adds up")
+                        .font(.subheadline)
+                        .foregroundColor(AppTheme.textSecondary)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 8)
                 
                 statCard(title: "Completed Tasks",
                          value: "\(completedTasks)",
@@ -43,24 +51,32 @@ struct AnalyticsView: View {
                 SectionHeaderView(title: "Last 30 Days")
                 CalendarHeatmapView()
             }
-            .padding()
+            .padding(.horizontal, 20)
+            .padding(.bottom, 24)
         }
-        .background(AppTheme.background.ignoresSafeArea())
+        .background(
+            ZStack {
+                AppTheme.background.ignoresSafeArea()
+                BlurredBackground()
+                    .ignoresSafeArea()
+            }
+        )
     }
     
-    private func statCard(title: String, value: String, icon: String) -> some View {
+    @ViewBuilder private func statCard(title: String, value: String, icon: String) -> some View {
         GlassCard {
             HStack {
                 Image(systemName: icon)
-                    .font(.title)
+                    .font(.title2)
                     .foregroundColor(.cyan)
                 
                 VStack(alignment: .leading) {
                     Text(title)
-                        .foregroundColor(.gray)
+                        .font(.subheadline)
+                        .foregroundColor(AppTheme.textSecondary)
                     Text(value)
-                        .font(.title.bold())
-                        .foregroundColor(.white)
+                        .font(.title2.bold())
+                        .foregroundColor(AppTheme.textPrimary)
                 }
                 Spacer()
             }
@@ -69,11 +85,12 @@ struct AnalyticsView: View {
     
     private func analyticsInsight() -> String {
         if focusMinutes > 120 {
-            return "🔥 You stay focused longer than most users."
+            return "🔥 Strong focus streak — keep it going."
         } else if completedTasks > 5 {
-            return "⚡️ Consistent progress detected."
+            return "⚡️ You’re shipping tasks consistently."
         } else {
-            return "⏳ Try short focus sessions to build momentum."
+            return "⏳ Start with short sessions to build momentum."
         }
     }
 }
+

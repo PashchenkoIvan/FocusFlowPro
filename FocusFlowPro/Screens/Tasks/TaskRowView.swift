@@ -14,34 +14,45 @@ struct TaskRowView: View {
     let task: Task
 
     var body: some View {
-        HStack(spacing: 14) {
+        GlassCard {
+            HStack(spacing: 14) {
+                Button {
+                    toggle()
+                } label: {
+                    Image(systemName: task.status == .done
+                          ? "checkmark.circle.fill"
+                          : "circle")
+                        .font(.title2)
+                        .foregroundColor(task.status == .done ? .green : .gray)
+                }
 
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(task.title)
+                        .font(.headline)
+                        .foregroundColor(AppTheme.textPrimary)
+                        .strikethrough(task.status == .done)
+
+                    Text(task.category.rawValue.capitalized)
+                        .font(.caption)
+                        .foregroundColor(AppTheme.textSecondary)
+                }
+
+                Spacer()
+            }
+        }
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
             Button {
                 toggle()
             } label: {
-                Image(systemName: task.status == .done
-                      ? "checkmark.circle.fill"
-                      : "circle")
-                    .font(.title2)
-                    .foregroundColor(task.status == .done ? .green : .gray)
-            }
+                Label("Complete", systemImage: "checkmark")
+            }.tint(.green)
 
-            VStack(alignment: .leading, spacing: 4) {
-                Text(task.title)
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .strikethrough(task.status == .done)
-
-                Text(task.category.rawValue.capitalized)
-                    .font(.caption)
-                    .foregroundColor(.gray)
-            }
-
-            Spacer()
+            Button {
+                appState.selectedTab = .focus
+            } label: {
+                Label("Focus", systemImage: "timer")
+            }.tint(.cyan)
         }
-        .padding()
-        .background(AppTheme.cardBackground)
-        .cornerRadius(16)
     }
 
     private func toggle() {

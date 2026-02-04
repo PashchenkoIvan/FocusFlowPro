@@ -29,8 +29,24 @@ struct TasksView: View {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             
-            VStack(spacing: 12) {
+            VStack(spacing: 16) {
+                HStack {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Tasks")
+                            .font(.largeTitle.bold())
+                            .foregroundColor(AppTheme.textPrimary)
+                        
+                        Text("Lightweight list for what matters today")
+                            .font(.subheadline)
+                            .foregroundColor(AppTheme.textSecondary)
+                    }
+                    Spacer()
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 8)
+                
                 filterBar
+                
                 ScrollView {
                     if filteredTasks.isEmpty {
                         emptyState
@@ -44,7 +60,8 @@ struct TasksView: View {
                                     }
                             }
                         }
-                        .padding()
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 24)
                     }
                 }
             }
@@ -54,12 +71,12 @@ struct TasksView: View {
                 HapticService.impact(.light)
             } label: {
                 Image(systemName: "plus")
-                    .font(.title)
-                    .foregroundColor(.black)
+                    .font(.title2.weight(.bold))
+                    .foregroundColor(.white)
                     .frame(width: 56, height: 56)
-                    .background(Color.white)
+                    .background(AppTheme.accentGradient)
                     .clipShape(Circle())
-                    .shadow(radius: 10)
+                    .shadow(color: AppTheme.shadow, radius: 20, x: 0, y: 10)
                     .padding()
             }
         }
@@ -67,25 +84,34 @@ struct TasksView: View {
             AddTaskView()
                 .environmentObject(appState)
         }
+        .background(
+            ZStack {
+                AppTheme.background.ignoresSafeArea()
+                BlurredBackground()
+                    .ignoresSafeArea()
+            }
+        )
     }
     
     // MARK: - Empty State
     
     private var emptyState: some View {
-        VStack(spacing: 12) {
-            Image(systemName: "checklist")
-                .font(.system(size: 40))
-                .foregroundColor(.gray)
-            
-            Text("No tasks yet")
-                .font(.headline)
-                .foregroundColor(.white)
-            
-            Text("Create your first task to start focusing")
-                .font(.caption)
-                .foregroundColor(.gray)
+        GlassCard {
+            VStack(spacing: 10) {
+                Image(systemName: "checklist")
+                    .font(.system(size: 40))
+                    .foregroundColor(.gray)
+                Text("No tasks yet")
+                    .font(.headline)
+                    .foregroundColor(AppTheme.textPrimary)
+                Text("Add a first task to give your focus a target")
+                    .font(.caption)
+                    .foregroundColor(AppTheme.textSecondary)
+            }
+            .frame(maxWidth: .infinity)
         }
-        .padding(.top, 60)
+        .padding(.horizontal, 20)
+        .padding(.top, 40)
     }
     
     // MARK: - Filter Bar
@@ -121,12 +147,16 @@ struct TasksView: View {
     ) -> some View {
         Button(action: action) {
             Text(title)
-                .font(.caption)
+                .font(.caption.weight(.semibold))
+                .foregroundColor(AppTheme.textPrimary.opacity(0.9))
                 .padding(.horizontal, 14)
                 .padding(.vertical, 8)
-                .background(selected ? AppTheme.cardBackground : Color.clear)
+                .background(selected ? AppTheme.chipSelectedBackground : AppTheme.chipBackground)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(AppTheme.cardStroke, lineWidth: selected ? 1.2 : 0.8)
+                )
                 .cornerRadius(16)
-                .foregroundColor(.white)
         }
     }
     
@@ -158,3 +188,4 @@ struct TasksView: View {
         HapticService.impact(.medium)
     }
 }
+

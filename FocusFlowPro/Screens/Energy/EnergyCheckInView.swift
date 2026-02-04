@@ -14,28 +14,39 @@ struct EnergyCheckInView: View {
     @State private var selected: EnergyLevel = .medium
 
     var body: some View {
-        VStack(spacing: 24) {
-            Text("How’s your energy today?")
-                .font(.largeTitle.bold())
-                .foregroundColor(.white)
+        ZStack {
+            AppTheme.background.ignoresSafeArea()
+            BlurredBackground()
+                .ignoresSafeArea()
 
-            EnergySelectorView(selected: $selected)
+            VStack(spacing: 28) {
+                Text("Energy check‑in")
+                    .font(.largeTitle.bold())
+                    .foregroundColor(AppTheme.textPrimary)
 
-            Button {
-                save()
-            } label: {
-                Text("Save")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(AppTheme.accentGradient)
-                    .cornerRadius(16)
+                Text("Quick snapshot of how you feel")
+                    .font(.subheadline)
+                    .foregroundColor(AppTheme.textSecondary)
+
+                EnergySelectorView(selected: $selected)
+                    .padding(.top, 8)
+
+                Button {
+                    save()
+                } label: {
+                    Text("Save")
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 14)
+                }
+                .buttonStyle(PrimaryButtonStyle())
+                .padding(.top, 12)
+
+                Spacer()
             }
-
-            Spacer()
+            .padding(.horizontal, 20)
+            .padding(.top, 40)
+            .padding(.bottom, 24)
         }
-        .padding()
-        .background(AppTheme.background.ignoresSafeArea())
     }
 
     private func save() {

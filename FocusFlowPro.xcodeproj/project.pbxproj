@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		63FBF48D2F33608300C13E37 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FBF48C2F33608300C13E37 /* UIComponents.swift */; };
+		63FBF48F2F3360C600C13E37 /* UIComponents 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FBF48E2F3360C600C13E37 /* UIComponents 2.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		63FBF4232F3353B200C13E37 /* FocusFlowPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusFlowPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63FBF48C2F33608300C13E37 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
+		63FBF48E2F3360C600C13E37 /* UIComponents 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIComponents 2.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -34,6 +41,8 @@
 			children = (
 				63FBF4252F3353B200C13E37 /* FocusFlowPro */,
 				63FBF4242F3353B200C13E37 /* Products */,
+				63FBF48C2F33608300C13E37 /* UIComponents.swift */,
+				63FBF48E2F3360C600C13E37 /* UIComponents 2.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +128,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63FBF48D2F33608300C13E37 /* UIComponents.swift in Sources */,
+				63FBF48F2F3360C600C13E37 /* UIComponents 2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

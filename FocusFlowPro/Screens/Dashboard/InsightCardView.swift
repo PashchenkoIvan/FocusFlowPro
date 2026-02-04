@@ -17,10 +17,11 @@ struct InsightCardView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Insight")
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
 
                 Text(insight)
-                    .foregroundColor(.gray)
+                    .font(.subheadline)
+                    .foregroundColor(AppTheme.textSecondary)
             }
         }
     }

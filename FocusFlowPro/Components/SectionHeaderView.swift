@@ -13,11 +13,13 @@ struct SectionHeaderView: View {
     let title: String
 
     var body: some View {
-        HStack {
-            Text(title)
-                .font(.headline)
-                .foregroundColor(.white)
+        HStack(spacing: 12) {
+            Text(title.uppercased())
+                .font(.caption.smallCaps())
+                .foregroundColor(AppTheme.textSecondary)
+            
             Spacer()
         }
+        .padding(.top, 4)
     }
 }

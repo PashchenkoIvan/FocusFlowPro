@@ -1,199 +1,187 @@
-## FocusFlow Pro
+# FocusFlow Pro
 
-**FocusFlow Pro** — минималистичное приложение для осознанной работы и трекинга фокуса.  
-Оно помогает быстро фиксировать задачи, запускать фокус‑сессии по таймеру, отслеживать энергию в течение дня и видеть аналитику прогресса без перегруженных дашбордов.
-
----
-
-### ✨ Основные возможности
-
-- **Фокус‑сессии (Pomodoro‑стиль)**  
-  - Круговой таймер с плавной анимацией.  
-  - Предустановленные длительности (15 / 25 / 50 минут) — можно выбрать перед стартом.  
-  - Таймер **продолжает работать**, даже если вы переключились на другой таб.  
-  - Автоматическое сохранение завершённых сессий в историю.
-
-- **Задачи (Tasks)**  
-  - Лёгкий список задач на день: тайтл, категория, приоритет, “усилие” (Light / Standard / Deep).  
-  - Фильтрация по категориям.  
-  - Быстрые действия: чекбокс, свайпы, контекстное меню (`Start Focus` / `Complete`).  
-  - Красивый экран добавления задачи на стеклянных карточках.
-
-- **Энергия (Energy check‑in)**  
-  - Быстрая отметка текущего уровня энергии (😴 / 😐 / 🔥).  
-  - Уровень энергии привязывается к фокус‑сессиям.
-
-- **Аналитика (Analytics)**  
-  - Карточка выполненных задач за всё время.  
-  - Суммарное время фокуса в минутах.  
-  - Умные текстовые инсайты в зависимости от привычек (много фокуса / много задач / пока мало активности).  
-  - Календарный heatmap за последние 30 дней по фокус‑сессиям.
-
-- **Мягкий UI с glassmorphism‑эффектом**  
-  - Кастомные стеклянные карточки `GlassCard`.  
-  - Размытые цветные пятна на фоне `BlurredBackground`.  
-  - Адаптация под тёмную и светлую тему (через `AppTheme` + системные цвета).
+**FocusFlow Pro** is a minimalist app for mindful work and focus tracking.  
+It helps you quickly capture tasks, start focus sessions with a timer, track your energy during the day, and see simple progress analytics without heavy dashboards.
 
 ---
 
-### 🧱 Технологии
+## ✨ Features
 
-- **SwiftUI** — декларативный UI, кастомный таббар, анимации, стеклянные карточки.
-- **Combine** — таймер фокус‑сессий на `Timer.publish`.
-- **ObservableObject / @StateObject / @ObservedObject / @EnvironmentObject** — архитектура состояния.
-- **Persistence** — простое сохранение данных задач, сессий и чек‑инов в JSON (через `PersistenceService`).
-- **Haptics** — тактильная отдача при ключевых действиях (`HapticService`).
+### 🕒 Focus Sessions (Pomodoro style)
+- Circular timer with smooth animation.
+- Preset durations: **15 / 25 / 50 minutes** (choose before starting).
+- Timer **keeps running** even when you switch to another tab.
+- Finished sessions are saved automatically in history.
 
----
+### ✅ Tasks
+- Simple daily task list: **title, category, priority, effort** (Light / Standard / Deep).
+- Filter by category.
+- Quick actions: checkbox, swipe actions, context menu (`Start Focus` / `Complete`).
+- Clean “Add Task” screen with glass-style cards.
 
-### 🏗 Архитектура проекта
+### 🔋 Energy Check-in
+- Quick energy level check: 😴 / 😐 / 🔥
+- Energy level is linked to focus sessions.
 
-Высокоуровневая структура:
+### 📊 Analytics
+- Total completed tasks (all time).
+- Total focus time (minutes).
+- Smart text insights based on your habits (lots of focus / lots of tasks / low activity).
+- 30-day calendar heatmap based on focus sessions.
 
-- `App/`
-  - `FocusFlowProApp.swift` — точка входа, создание `AppState`, настройка темы.
-  - `RootContainerView.swift` — показ экрана запуска и основного приложения.
-  - `AppState.swift` — глобальное состояние (табы, задачи, сессии, энергия, настройки).
-- `Navigation/`
-  - `MainTabView.swift` — корневой контейнер с контентом по табам.
-  - `CustomTabBar.swift` — кастомный таббар с иконками.
-  - `Tab.swift` — перечисление вкладок.
-- `Screens/`
-  - `Dashboard/` — главный экран (`DashboardView`, `FocusSummaryCard`, `InsightCardView`).
-  - `Focus/` — фокус‑экран (`FocusView`, `FocusViewModel`).
-  - `Tasks/` — задачи (`TasksView`, `TaskRowView`, `AddTaskView`).
-  - `Analytics/` — аналитика (`AnalyticsView`, `CalendarHeatmapView`).
-  - `Energy/` — чекин энергии (`EnergyCheckInView`).
-  - `Settings/` — настройки и информация (`SettingsView`, `AboutView`).
-  - `Launch/` — экран запуска (`LaunchView`).
-- `Components/`
-  - `CircularProgressView.swift` — круговой прогресс для дашборда.
-  - `CircularTimerView.swift` — крупный таймер в фокус‑экране.
-  - `EnergySelectorView.swift` — селектор энергии в виде эмодзи.
-  - `SectionHeaderView.swift` — заголовки секций.
-- `Models/`
-  - `Task`, `TaskCategory`, `TaskPriority`.
-  - `FocusSession`.
-  - `EnergyEntry`, `EnergyLevel`.
-- `Services/`
-  - `PersistenceService.swift` — сохранение/загрузка из файлов.
-  - `HapticService.swift` — работа с тактильной отдачей.
-  - `SmartInsightEngine.swift` — генерация текстовых инсайтов.
-- `Theme/`
-  - `AppTheme.swift` — единая палитра и градиенты.
-  - `GlassCard.swift` — стеклянные карточки.
-  - `GradientBackground.swift`, `GlassCard.swift`, `BlurredBackground` (в `UIComponents.swift`).
+### 🧊 Soft UI (Glassmorphism)
+- Custom glass cards: `GlassCard`
+- Blurred colorful background shapes: `BlurredBackground`
+- Supports light/dark mode via `AppTheme` + system colors
 
 ---
 
-### ⚙️ Запуск проекта
+## 🧱 Tech Stack
 
-1. **Клонировать репозиторий**
+- **SwiftUI** — declarative UI, custom tab bar, animations, glass cards
+- **Combine** — focus timer built with `Timer.publish`
+- **ObservableObject / @StateObject / @ObservedObject / @EnvironmentObject** — state management
+- **Persistence** — simple JSON storage via `PersistenceService`
+- **Haptics** — haptic feedback via `HapticService`
 
-```bash
+---
+
+## 🏗 Project Structure
+
+```text
+App/
+  FocusFlowProApp.swift
+  RootContainerView.swift
+  AppState.swift
+
+Navigation/
+  MainTabView.swift
+  CustomTabBar.swift
+  Tab.swift
+
+Screens/
+  Dashboard/
+  Focus/
+  Tasks/
+  Analytics/
+  Energy/
+  Settings/
+  Launch/
+
+Components/
+  CircularProgressView.swift
+  CircularTimerView.swift
+  EnergySelectorView.swift
+  SectionHeaderView.swift
+
+Models/
+  Task, TaskCategory, TaskPriority
+  FocusSession
+  EnergyEntry, EnergyLevel
+
+Services/
+  PersistenceService.swift
+  HapticService.swift
+  SmartInsightEngine.swift
+
+Theme/
+  AppTheme.swift
+  GlassCard.swift
+  GradientBackground.swift
+  BlurredBackground (UIComponents.swift)
+
+```
+⸻
+
+## ⚙️ Getting Started
+
+1) Clone the repository
+
+```
 git clone https://github.com/PashchenkoIvan/FocusFlowPro.git
 cd FocusFlowPro
 ```
 
-2. **Открыть в Xcode**
+2) Open in Xcode
+	•	Open FocusFlowPro.xcodeproj (or your workspace).
+	•	Make sure the FocusFlowPro target is selected.
 
-- Откройте `FocusFlowPro.xcodeproj` или рабочее пространство.
-- Убедитесь, что выбран таргет `FocusFlowPro`.
+3) Build & Run
+	•	Choose a simulator (e.g. iPhone 15 Pro)
+	•	Press Run (⌘ + R)
 
-3. **Собрать и запустить**
+No third-party dependencies (CocoaPods/SPM). Built with standard SwiftUI/Combine only.
 
-- Выберите симулятор (например, iPhone 15 Pro).
-- Нажмите `Run` (`⌘ + R`).
+⸻
 
-Никаких сторонних зависимостей (CocoaPods/SPM) проект не требует — всё на стандартном SwiftUI/Combine.
+## 💡 How to Use
 
----
+### Dashboard
+	•	Top: date + “Today”
+	•	Quick cards:
+	•	Focus session → timer screen
+	•	Energy check-in → energy screen
+	•	Today Focus: circular progress + completion percent
+	•	Insight: short habit-based message
+	•	Today’s Tasks: up to 4 tasks (more on Tasks screen)
 
-### 💡 Как пользоваться
+### Focus
+	•	Choose duration: 15 / 25 / 50
+	•	Choose energy level (emoji)
+	•	Tap Start
+	•	Timer counts down
+	•	You can switch tabs — timer continues in background
+	•	Tap Pause / Reset if needed
+	•	When timer ends:
+	•	Haptic notification
+	•	Session saved to FocusSessions + shown in analytics
 
-#### Главный экран (Dashboard)
+### Tasks
+	•	Add:
+	•	Tap floating +
+	•	Enter title + choose category/priority/effort
+	•	Tap Add Task
+	•	Manage:
+	•	Tap left icon to toggle status (planned/done)
+	•	Swipe left:
+	•	Complete — finish task
+	•	Focus — go to focus screen
+	•	Long-press for context menu actions
 
-- Вверху — дата и заголовок “Today”.
-- Ниже — две быстрые карточки:
-  - **Focus session** — переход на экран таймера.
-  - **Energy check‑in** — переход к отметке уровня энергии.
-- Блок **Today Focus**:
-  - Круговой прогресс по выполненным задачам.
-  - Процент завершения.
-- Блок **Insight**:
-  - Короткий текстовый инсайт про ваши привычки.
-- Секция **Today's Tasks**:
-  - До 4 задач на сегодня (остальные — на экране Tasks).
+### Analytics
+	•	Completed Tasks — total tasks done
+	•	Focus Time — total focus minutes
+	•	Insight — short message based on activity
+	•	Last 30 Days — calendar heatmap (sessions per day)
 
-#### Фокус‑экран (Focus)
+### Energy Check-in
+	•	Choose 😴 / 😐 / 🔥 and tap Save
+	•	Adds an EnergyEntry to history (can be used later for deeper analytics)
 
-- Выберите длительность сессии (15 / 25 / 50 минут) сверху.
-- Выберите уровень энергии (эмодзи) — это сохранится вместе с сессией.
-- Нажмите **Start**:
-  - Круговой таймер начнёт обратный отсчёт.
-  - Можно перейти на другие вкладки — таймер будет тикать в фоне.
-- Нажмите **Pause** или **Reset**, если нужно остановить/сбросить.
-- Когда таймер доходит до нуля:
-  - Срабатывает haptic‑уведомление.
-  - Сессия сохраняется в `FocusSessions` и попадает в аналитику.
+### Settings
+	•	Dark Mode — force dark theme
+	•	Haptics — enable/disable haptics
+	•	About FocusFlow Pro — app philosophy
+	•	Reset All Data — clears tasks, sessions, and check-ins (danger zone)
 
-#### Задачи (Tasks)
+⸻
 
-- Добавление:
-  - Нажмите на плавающую кнопку `+` в правом нижнем углу.
-  - Введите заголовок, выберите категорию, приоритет и усилие.
-  - Нажмите **Add Task**.
-- Управление:
-  - Тап по иконке слева меняет статус (planned/done).
-  - Свайп влево:
-    - `Complete` — завершить задачу.
-    - `Focus` — перейти на фокус‑экран.
-  - Контекстное меню по задаче (долгое нажатие) также позволяет запустить фокус или завершить.
+## 🧩 Key Implementation Notes
+	•	Timer lives at the tab level
+	•	FocusViewModel is created as @StateObject in MainTabView
+	•	Passed to FocusView as @ObservedObject
+	•	This keeps the timer running while switching tabs
+	•	Theme support
+	•	AppState.isDarkMode controls .preferredColorScheme
+	•	AppTheme uses system colors (Color(.systemBackground), Color.primary, Color.secondary)
+	•	Reusable glass cards
+	•	GlassCard standardizes padding, corner radius, border, and shadow
 
-#### Аналитика (Analytics)
+⸻
 
-- **Completed Tasks** — сколько задач завершено всего.
-- **Focus Time** — суммарное время фокуса (в минутах) по всем сессиям.
-- **Insight** — короткий текст в зависимости от фокуса/задач:
-  - много фокуса → “Strong focus streak…”
-  - много задач → “You’re shipping tasks consistently.”
-  - мало активности → совет начать с коротких сессий.
-- **Last 30 Days** — календарный heatmap:
-  - точки окрашены в зависимости от числа сессий в день.
+## 🛣 Roadmap / Ideas
+	•	Show active focus indicator in the tab bar (small progress around the timer icon)
+	•	Add deeper energy analytics (e.g. “focus vs energy by weekday” chart)
+	•	Add localization (RU/EN) via Localizable.strings
+	•	Link focus sessions to a specific task (taskId already exists in FocusSession)
 
-#### Энергия (Energy check‑in)
-
-- Экран спрашивает “How’s your energy today?” / “Quick snapshot of how you feel”.
-- Выберите смайлик, нажмите **Save**:
-  - Добавится `EnergyEntry` в историю.
-  - Позже эти данные можно будет использовать в более продвинутой аналитике.
-
-#### Настройки (Settings)
-
-- **Dark Mode** — форсирование тёмной темы в приложении.
-- **Haptics** — включение/отключение тактильной отдачи.
-- **About FocusFlow Pro** — экран с описанием и философией приложения.
-- **Reset All Data** — очистка задач, сессий и чек‑инов (danger zone).
-
----
-
-### 🧩 Ключевые решения и нюансы
-
-- **Таймер живёт на уровне таббара**  
-  `FocusViewModel` создан как `@StateObject` в `MainTabView` и пробрасывается в `FocusView` как `@ObservedObject`.  
-  Это позволяет таймеру продолжать работу при переключении вкладок.
-
-- **Тема (светлая/тёмная)**  
-  Через `AppState.isDarkMode` управляется `.preferredColorScheme`, а `AppTheme` использует системные цвета (`Color(.systemBackground)`, `Color.primary`, `Color.secondary`), чтобы интерфейс оставался читаемым в обоих вариантах.
-
-- **Glass‑карточки**  
-  `GlassCard` приводит все карточки к единому виду: паддинги, радиус, обводка, тень. Это делает интерфейс стабильным визуально и упрощает добавление новых блоков.
-
----
-
-### 🛣 Возможные доработки
-
-- Индикатор активности фокус‑сессии прямо в таббаре (малый прогресс вокруг иконки `timer`).
-- Расширенная аналитика по уровням энергии (например, график “фокус vs энергия по дням недели”).
-- Локализация интерфейса (RU/EN) через `Localizable.strings`.
-- Привязка фокус‑сессии к конкретной задаче (`taskId` уже есть в `FocusSession`).
